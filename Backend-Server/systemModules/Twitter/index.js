@@ -9,7 +9,7 @@ const token = 'AAAAAAAAAAAAAAAAAAAAAMTSaAEAAAAAXxyk8NUypRLHiKdSVaMJyxSU4dE%3D9VI
 
 const rulesURL = 'https://api.twitter.com/2/tweets/search/stream/rules';
 const streamURL = 'https://api.twitter.com/2/tweets/search/stream';
-const streamFullURL = 'https://api.twitter.com/2/tweets/search/stream?tweet.fields=lang&expansions=attachments.media_keys&media.fields=preview_image_url,url';
+const streamFullURL = 'https://api.twitter.com/2/tweets/search/stream?tweet.fields=lang,author_id,public_metrics&expansions=attachments.media_keys&media.fields=preview_image_url,url,public_metrics';
 //https://api.twitter.com/2/users/2244994945/tweets?tweet.fields=created_at&max_results=100&start_time=2019-01-01T17:00:00Z&end_time=2020-12-12T01:00:00Z
 //https://api.twitter.com/2/tweets?ids=1204084171334832128&tweet.fields=public_metrics&expansions=attachments.media_keys&media.fields=public_metrics  
 
@@ -282,8 +282,8 @@ class Twitter {
             const collectionName = "Twitter";
             const twitterCollection = this.connection.db.collection(collectionName);
             await twitterCollection.remove()
-            await this.startStreaming(rules)
-            // this.streamConnect1(rules)
+            //await this.startStreaming(rules)
+            await this.streamConnect1(rules)
             console.log("startStreaming....")
             res.send({
                 status: true,
