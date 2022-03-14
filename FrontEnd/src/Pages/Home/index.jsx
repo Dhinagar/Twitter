@@ -31,6 +31,7 @@ import { FiMail } from "react-icons/fi";
 import { BsBookmark, BsUpload } from "react-icons/bs";
 import { RiFileListLine } from "react-icons/ri";
 import { CgProfile, CgMoreO } from "react-icons/cg";
+import { Link } from "react-router-dom";
 
 
 
@@ -443,39 +444,51 @@ const Home = () => {
                                 tweets.map((ele, i) => (
 
                                     <Box key={i} width="100%" borderRadius="md" shadow="md" overflow="hidden" p={2}>
+
                                         <HStack spacing={1}>
-                                            <Avatar size="md" name={ele.data?.author_id ? ele.data?.author_id : ele.data?.id} src={ele.data?.author_id ? ele.data?.author_id : ele.data?.id} />
-                                            <Text fontWeight="semibold">{ele.data?.id}</Text>
-                                            <Text fontWeight="semibold">{ele.data?.author_id}</Text>
+                                            <Avatar cursor="pointer" onClick={() => { }} size="md" name={ele.data?.author_id ? ele.data?.author_id : ele.data?.id} src={ele.data?.author_id ? ele.data?.author_id : ele.data?.id} />
+                                            <Link><Text fontWeight="semibold">{ele.data?.author_id ? ele.data?.author_id : ele.data?.id}</Text></Link>
+                                            {/* <Text fontWeight="semibold">{ele.data?.author_id}</Text> */}
                                         </HStack>
-                                        <Box width="100%" >
-                                            <Text dangerouslySetInnerHTML={{ __html: ele?.data?.text || "" }} />
-                                        </Box>
-                                        {
-                                            ele?.includes?.tweets[0].urls.urls[0].url &&
-                                            <Image
-                                                boxSize="100%"
-                                                src={ele?.includes?.tweets[0]?.urls?.urls[0]?.url}
-                                                alt='Twitter'
 
-                                            />
-                                        }
+                                        <VStack spacing={2}>
+                                            <Box width="100%" >
+                                                <Text dangerouslySetInnerHTML={{ __html: ele?.data?.text || "" }} />
+                                            </Box>
+                                            {
+                                                (ele?.includes?.media && ele?.includes?.media.length > 0 && ele?.includes?.media[0].type === "photo") &&
+                                                <Image
+                                                    boxSize="75%"
+                                                    src={ele?.includes?.media[0]?.url}
+                                                    alt='Twitter'
+                                                    border={1}
+                                                    borderRadius={25}
+                                                    p={4}
 
-                                        <Box width="100%" >
-                                            <HStack spacing={0}>
-                                                <Box w="10%"></Box>
-                                                <Box p={4} w="20%"><HStack spacing={2}> <FaRegComment /><Text>{ele?.public_metrics?.reply_count}</Text></HStack></Box>
-                                                <Box p={4} w="20%"><HStack spacing={2}> <AiOutlineRetweet /><Text>{ele?.public_metrics?.retweet_count}</Text></HStack></Box>
-                                                <Box p={4} w="20%"><HStack spacing={2}> <AiOutlineHeart /><Text>{ele?.public_metrics?.like_count}</Text></HStack></Box>
-                                                <Box p={4} w="20%" ><HStack spacing={2}> <BsUpload /><Text>{ele?.public_metrics?.quote_count}</Text></HStack></Box>
-                                                <Box w="10%"></Box>
-                                            </HStack>
+                                                />
+                                            }
+                                            {
+                                                (ele?.includes?.media && ele?.includes?.media.length > 0 && ele?.includes?.media[0].type === "video") &&
+                                                <Box width="70%" height="30px" >
+                                                    <video src={ele?.includes?.media[0]?.url}></video>
+                                                </Box>
+                                            }
+                                            <Box width="100%" >
+                                                <HStack spacing={0}>
+                                                    <Box w="10%"></Box>
+                                                    <Box p={4} w="20%"><HStack spacing={2}> <FaRegComment /><Text>{ele?.data?.public_metrics?.reply_count}</Text></HStack></Box>
+                                                    <Box p={4} w="20%"><HStack spacing={2}> <AiOutlineRetweet /><Text>{ele?.data?.public_metrics?.retweet_count}</Text></HStack></Box>
+                                                    <Box p={4} w="20%"><HStack spacing={2}> <AiOutlineHeart /><Text>{ele?.data?.public_metrics?.like_count}</Text></HStack></Box>
+                                                    <Box p={4} w="20%" ><HStack spacing={2}> <BsUpload /><Text>{ele?.data?.public_metrics?.quote_count}</Text></HStack></Box>
+                                                    <Box w="10%"></Box>
+                                                </HStack>
 
-                                        </Box>
+                                            </Box>
 
-                                        <Box>
+                                            <Box>
 
-                                        </Box>
+                                            </Box>
+                                        </VStack>
                                     </Box>
                                 ))
                             }
