@@ -1,0 +1,24 @@
+{
+	"serverPort": 3043,
+	"isHttps": false,
+	"mongoIP": "localhost",
+	"mongoDBName": "DB_DEV",
+	"mongoDBUserName": "",
+	"mongoDBPassword": "",
+	"JWT_Secret": "jsonwebtoken",
+	"Token": "AAAAAAAAAAAAAAAAAAAAAMTSaAEAAAAAXxyk8NUypRLHiKdSVaMJyxSU4dE%3D9VI4MnacaVGKlU79BeNuvqeQmUZReGPh8ivdPAdA03eDAPnSs8",
+	"default_user": {
+		"email": "admin@admin.com",
+		"password": "admin123"
+	},
+	"auth": {
+		"isAuthenticationRequired": true,
+		"users": [
+			{
+				"username": "AGENT_SERVER",
+				"password": "PAR123783PASS"
+			}
+		]
+	}
+	
+}
